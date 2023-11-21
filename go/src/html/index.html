@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Data Fetcher</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+
+</head>
+<body>
+    
+    <button id="getData">Reload Data</button>
+    <button id="addNewTarget">Add New Target</button>
+    <div id="dataContainer"></div>
+    <div id="targetModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Target</h2>
+            <form id="newTargetForm">
+                <input type="text" id="jobName" name="jobName" placeholder="Job Name"><br>
+                <input type="text" id="scheme" name="scheme" placeholder="Scheme"><br>
+                <input type="text" id="metricsPath" name="metricsPath" placeholder="Metrics Path"><br>
+                <input type="text" id="scrapeInterval" name="scrapeInterval" placeholder="Scrape Interval"><br>
+                <input type="text" id="scrapeTimeout" name="scrapeTimeout" placeholder="Scrape Timeout"><br>
+                <input type="text" id="targets" name="targets" placeholder="Targets (comma-separated)"><br>
+                <input type="text" id="username" name="username" placeholder="Username"><br>
+                <input type="password" id="password" name="password" placeholder="Password"><br>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+    <script src="/static/js/fetch.js"></script>
+        </script>
+    <script>fetchData();</script>
+    <script src="/static/js/add.js"></script>
+
+</body>
+</html>

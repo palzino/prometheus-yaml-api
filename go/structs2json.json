@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$ref": "#/definitions/PrometheusConfig",
+  "definitions": {
+    "BasicAuthConfig": {
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "GlobalConfig": {
+      "required": [
+        "scrape_interval",
+        "external_labels"
+      ],
+      "properties": {
+        "scrape_interval": {
+          "type": "string"
+        },
+        "external_labels": {
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "PrometheusConfig": {
+      "required": [
+        "global",
+        "scrape_configs"
+      ],
+      "properties": {
+        "global": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/GlobalConfig"
+        },
+        "scrape_configs": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/ScrapeConfig"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ScrapeConfig": {
+      "required": [
+        "jobName"
+      ],
+      "properties": {
+        "jobName": {
+          "type": "string"
+        },
+        "scheme": {
+          "type": "string"
+        },
+        "metricsPath": {
+          "type": "string"
+        },
+        "scrapeInterval": {
+          "type": "string"
+        },
+        "scrapeTimeout": {
+          "type": "string"
+        },
+        "staticConfigs": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/StaticConfig"
+          },
+          "type": "array"
+        },
+        "basicAuth": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/BasicAuthConfig"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "StaticConfig": {
+      "required": [
+        "targets"
+      ],
+      "properties": {
+        "targets": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    }
+  }
+}

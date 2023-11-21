@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(20, 21, 21);
+}
+
+button {
+    margin: 10px;
+    padding: 5px 15px;
+}
+
+#dataContainer {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap onto the next line */
+    justify-content: center; /* Centers the items horizontally */
+    gap: 10px; /* Adds some space between the cards */
+    margin-top: 20px;
+}
+
+.card {
+    border: 1px solid rgb(76, 72, 72)878;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 300px;
+    background-color: rgb(61, 58, 53);
+}
+.modal {
+    display: none;
+    position: fixed; /* Changed from 'relative' to 'fixed' */
+    z-index: 1;
+    left: 50%; /* Center horizontally */
+    top: 50%; /* Center vertically */
+    width: 100%;
+    /* Adjust height as needed, or remove it to allow the content to define the height */
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* Simplified background color */
+    padding-top: 60px;
+    transform: translate(-50%, -50%); /* Shifts the modal to truly center it */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

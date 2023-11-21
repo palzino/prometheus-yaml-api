@@ -1,0 +1,36 @@
+version: "3"
+services:
+  web:
+    restart: always
+    container_name: targets-api
+    build: .
+    ports:
+      - "5002:7042" #do not change 7042 as this is the internal port
+    volumes:
+      - ./prometheus.yml:/app/prometheus.yml
+    networks:
+    - prometheus-network
+
+
+  prometheus:
+    restart: always
+    container_name: prometheus
+    image: prom/prometheus
+    ports: 
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus-data:/prometheus \
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.enable-lifecycle"
+    networks:
+      - prometheus-network
+networks:
+  prometheus-network:
+    driver: bridge
+
+
+
+  

@@ -1,0 +1,199 @@
+{
+    "Global": {
+        "ScrapeInterval": "5s",
+        "ExternalLabels": {
+            "monitor": "codelab-monitor"
+        }
+    },
+    "ScrapeConfigs": [
+        {
+            "JobName": "prometheus",
+            "Scheme": "",
+            "MetricsPath": "",
+            "ScrapeInterval": "5s",
+            "ScrapeTimeout": "",
+            "StaticConfigs": [
+                {
+                    "Targets": [
+                        "localhost:9090"
+                    ]
+                }
+            ],
+            "BasicAuth": null
+        },
+        {
+            "JobName": "adguard",
+            "Scheme": "",
+            "MetricsPath": "",
+            "ScrapeInterval": "",
+            "ScrapeTimeout": "",
+            "StaticConfigs": [
+                {
+                    "Targets": [
+                        "domain"
+                    ]
+                }
+            ],
+            "BasicAuth": null
+        },
+        {
+            "JobName": "pinger",
+            "Scheme": "",
+            "MetricsPath": "",
+            "ScrapeInterval": "",
+            "ScrapeTimeout": "",
+            "StaticConfigs": [
+                {
+                    "Targets": [
+                        "domain"
+                    ]
+                }
+            ],
+            "BasicAuth": null
+        },
+        {
+            "JobName": "greenhouse",
+            "Scheme": "",
+            "MetricsPath": "",
+            "ScrapeInterval": "",
+            "ScrapeTimeout": "",
+            "StaticConfigs": [
+                {
+                    "Targets": [
+                        "domain"
+                    ]
+                }
+            ],
+            "BasicAuth": null
+        },
+        {
+            "JobName": "pfsense",
+            "Scheme": "",
+            "MetricsPath": "",
+            "ScrapeInterval": "",
+            "ScrapeTimeout": "",
+            "StaticConfigs": [
+                {
+                    "Targets": [
+                        "domain"
+                    ]
+                }
+            ],
+            "BasicAuth": null
+        },
+        {
+            "JobName": "cAdvisor-1",
+            "Scheme": "",
+            "MetricsPath": "",
+            "ScrapeInterval": "",
+            "ScrapeTimeout": "",
+            "StaticConfigs": [
+                {
+                    "Targets": [
+                        "domain"
+                    ]
+                }
+            ],
+            "BasicAuth": null
+        },
+        {
+            "JobName": "node_exporter_metrics",
+            "Scheme": "",
+            "MetricsPath": "",
+            "ScrapeInterval": "",
+            "ScrapeTimeout": "",
+            "StaticConfigs": [
+                {
+                    "Targets": [
+                        "domain"
+                    ]
+                }
+            ],
+            "BasicAuth": null
+        },
+        {
+            "JobName": "qbittorent",
+            "Scheme": "https",
+            "MetricsPath": "/metrics/metrics",
+            "ScrapeInterval": "30s",
+            "ScrapeTimeout": "15s",
+            "StaticConfigs": [
+                {
+                    "Targets": [
+                        "1.domain.co.uk",
+                        "2.domain.co.uk",
+                        "4.domain.co.uk",
+                        "5.domain.co.uk"
+                    ]
+                }
+            ],
+            "BasicAuth": {
+                "Username": "user",
+                "Password": "password"
+            }
+        },
+        {
+            "JobName": "keycloak",
+            "Scheme": "https",
+            "MetricsPath": "",
+            "ScrapeInterval": "30s",
+            "ScrapeTimeout": "15s",
+            "StaticConfigs": [
+                {
+                    "Targets": [
+                        "domain"
+                    ]
+                }
+            ],
+            "BasicAuth": null
+        },
+        {
+            "JobName": "clevApi",
+            "Scheme": "https",
+            "MetricsPath": "",
+            "ScrapeInterval": "15s",
+            "ScrapeTimeout": "10s",
+            "StaticConfigs": [
+                {
+                    "Targets": [
+                        "domain"
+                    ]
+                }
+            ],
+            "BasicAuth": null
+        },
+        {
+            "JobName": "keycloak-realms",
+            "Scheme": "https",
+            "MetricsPath": "/realms/master/metrics",
+            "ScrapeInterval": "30s",
+            "ScrapeTimeout": "15s",
+            "StaticConfigs": [
+                {
+                    "Targets": [
+                        "domain"
+                    ]
+                }
+            ],
+            "BasicAuth": null
+        },
+        {
+            "JobName": "F2B-atlantic",
+            "Scheme": "https",
+            "MetricsPath": "/metrics",
+            "ScrapeInterval": "30s",
+            "ScrapeTimeout": "15s",
+            "StaticConfigs": [
+                {
+                    "Targets": [
+                        "domain"
+                    ]
+                }
+            ],
+            "BasicAuth": {
+                "Username": "user",
+                "Password": "password"
+            }
+        }
+    ]
+}
