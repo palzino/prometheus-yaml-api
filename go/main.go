@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"errors"
@@ -75,7 +76,7 @@ func writeConfigToFile(config PrometheusConfig) {
 		log.Fatalf("Error writing config file: %v", err)
 	}
 }
-func restartProm() (string, error) {
+func restartDockerProm() (string, error) {
 	ctx := context.Background()
 	cli, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
 	if err != nil {
@@ -108,8 +109,9 @@ func restartProm() (string, error) {
 	}
 	return "", err
 }
-func restartprom(c *gin.Context) {
-	message, err := restartProm()
+
+func restartdockerprom(c *gin.Context) {
+	message, err := restartDockerProm()
 	if err != nil {
 		log.Fatal(message, err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -117,7 +119,50 @@ func restartprom(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"message": "Container restarted successfully"})
 }
+func restartNormalProm() error {
 
+	// Create the request body
+	requestBody := []byte("Request body goes here")
+
+	// Create a new HTTP request
+	req, err := http.NewRequest("POST", "http://localhost:8080/mypost", bytes.NewBuffer(requestBody))
+	if err != nil {
+		return err
+	}
+
+	// Set the request headers if needed
+	req.Header.Set("Content-Type", "application/json")
+
+	// Send the request
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	// Check the response status code
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("unexpected status code: %d", resp.StatusCode)
+	}
+
+	// Read the response body if needed
+	// responseBody, err := ioutil.ReadAll(resp.Body)
+	// if err != nil {
+	//     return err
+	// }
+
+	return nil
+}
+func restartnormalprom(c *gin.Context) {
+	err := restartNormalProm()
+	if err != nil {
+		log.Fatal(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Container restarted successfully"})
+}
 func getPromConf(c *gin.Context) {
 	c.JSON(http.StatusOK, currentConfig)
 }
@@ -131,7 +176,7 @@ func newTarget(c *gin.Context) {
 
 	currentConfig.ScrapeConfigs = append(currentConfig.ScrapeConfigs, newtarget)
 	writeConfigToFile(currentConfig)
-	message, err := restartProm()
+	message, err := restartDockerProm()
 	if err != nil {
 		log.Fatal(message, err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -206,6 +251,7 @@ func main() {
 	router.GET("/schema", getSchema)
 	router.POST("/newtarget", newTarget)
 	router.POST("/deletetarget", deleteTarget)
-	router.GET("/promrestart", restartprom)
+	router.GET("/promdockerrestart", restartdockerprom)
+	router.GET("/promnormalrestart", restartnormalprom)
 	router.Run(":7042")
 }
