@@ -7,7 +7,7 @@ services:
     ports:
       - "5002:7042" #do not change 7042 as this is the internal port
     volumes:
-      - ./prometheus.yml:/app/prometheus.yml
+      - ./prometheus.yml:/app/config/prometheus.yml
     # networks:
     # - prometheus-network
 
