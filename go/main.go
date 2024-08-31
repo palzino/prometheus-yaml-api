@@ -78,7 +78,8 @@ func writeConfigToFile(config PrometheusConfig) {
 func restartNormalPromHandler(c *gin.Context) {
 	var ip IPAdress
 	c.BindJSON(&ip)
-	ipaddr := "http://" + ip.IP + ":9090/-/reload"
+	ipaddr := "http://" + ip.IP + "/-/reload"
+	fmt.Println(ipaddr)
 	// Create a new HTTP request
 	req, err := http.NewRequest("POST", ipaddr, bytes.NewBuffer([]byte("")))
 	if err != nil {
