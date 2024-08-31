@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Data Fetcher</title>
+    <title>Prometheus targets</title>
     <link rel="stylesheet" href="/static/css/style.css">
 
 </head>
 <body>
-    
-    <button id="getData">Reload Data</button>
-    <button id="addNewTarget">Add New Target</button>
-    <div id="dataContainer"></div>
-    <div id="targetModal" class="modal">
+    <button id="reloadBtn">Reload Config</button>
+    <div id="reloadModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" id="reloadModalClose">&times;</span>
+            <h2>Reload</h2>
+            <form id="reloadForm">
+                <input type="text" id="reloadIP" name="IP" placeholder="192.168.1.10:9090"><br>
+                <button type="submit">Reload</button>
+            </form>
+        </div>
+    </div>
+    <button id="addNewTargetBtn">Add New Target</button>
+    <div id="dataContainer"></div>
+    <div id="addTargetModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="addTargetModalClose">&times;</span>
             <h2>Add New Target</h2>
-            <form id="newTargetForm">
+            <form id="addTargetForm">
                 <input type="text" id="jobName" name="jobName" placeholder="Job Name"><br>
                 <input type="text" id="scheme" name="scheme" placeholder="Scheme"><br>
                 <input type="text" id="metricsPath" name="metricsPath" placeholder="Metrics Path"><br>
@@ -30,8 +39,8 @@
         </div>
     </div>
     <script src="/static/js/fetch.js"></script>
-        </script>
     <script>fetchData();</script>
+    <script src="/static/js/reload.js"></script>
     <script src="/static/js/add.js"></script>
 
 </body>

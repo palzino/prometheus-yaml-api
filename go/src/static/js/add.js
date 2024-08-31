@@ -1,30 +1,26 @@
-var modal = document.getElementById("targetModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("addNewTarget");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var addTargetModal = document.getElementById("addTargetModal");
+var addNewTargetBtn = document.getElementById("addNewTargetBtn");
+var addTargetModalClose = document.getElementById("addTargetModalClose");
 
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
+addNewTargetBtn.onclick = function() {
+    addTargetModal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
+addTargetModalClose.onclick = function() {
+    addTargetModal.style.display = "none";
 }
 
 // Close the modal if user clicks outside of it
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target == addTargetModal) {
+        addTargetModal.style.display = "none";
     }
 }
 
 // Handle form submit
-document.getElementById('newTargetForm').addEventListener('submit', function(e) {
+document.getElementById('addTargetForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
     var formData = {
@@ -52,7 +48,7 @@ document.getElementById('newTargetForm').addEventListener('submit', function(e) 
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
-        modal.style.display = "none";
+        addTargetModal.style.display = "none";
         fetchData();
     })
 });
