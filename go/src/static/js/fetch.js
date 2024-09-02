@@ -1,5 +1,3 @@
-document.getElementById('getData').addEventListener('click', fetchData);
-        document.getElementById('postData').addEventListener('click', saveData);
         
         function fetchData() {
             fetch('/promconf')

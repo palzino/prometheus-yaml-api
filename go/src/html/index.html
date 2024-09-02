@@ -19,15 +19,17 @@
             </form>
         </div>
     </div>
-    <button id="addNewTargetBtn">Add New Target</button>
-    <div id="dataContainer"></div>
-    <div id="addTargetModal" class="modal">
+    <button id="targetBtn">Add New Target</button>
+    <div id="targetModal" class="modal">
         <div class="modal-content">
-            <span class="close" id="addTargetModalClose">&times;</span>
+            <span class="close" id="targetModalClose">&times;</span>
             <h2>Add New Target</h2>
             <form id="addTargetForm">
                 <input type="text" id="jobName" name="jobName" placeholder="Job Name"><br>
-                <input type="text" id="scheme" name="scheme" placeholder="Scheme"><br>
+                <select id="scheme" name="scheme">
+                    <option value="http">http</option>
+                    <option value="https">https</option>
+                </select><br>
                 <input type="text" id="metricsPath" name="metricsPath" placeholder="Metrics Path"><br>
                 <input type="text" id="scrapeInterval" name="scrapeInterval" placeholder="Scrape Interval"><br>
                 <input type="text" id="scrapeTimeout" name="scrapeTimeout" placeholder="Scrape Timeout"><br>
@@ -38,6 +40,8 @@
             </form>
         </div>
     </div>
+    <div id="dataContainer"></div>
+
     <script src="/static/js/fetch.js"></script>
     <script>fetchData();</script>
     <script src="/static/js/reload.js"></script>

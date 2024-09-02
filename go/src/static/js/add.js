@@ -1,21 +1,22 @@
-var addTargetModal = document.getElementById("addTargetModal");
-var addNewTargetBtn = document.getElementById("addNewTargetBtn");
-var addTargetModalClose = document.getElementById("addTargetModalClose");
+var targetModal = document.getElementById("targetModal");
+var targetBtn = document.getElementById("targetBtn");
+var targetModalClose = document.getElementById("targetModalClose");
 
 // When the user clicks the button, open the modal 
-addNewTargetBtn.onclick = function() {
-    addTargetModal.style.display = "block";
+targetBtn.onclick = function() {
+    console.log('Opening Add New Target Modal');
+    targetModal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
-addTargetModalClose.onclick = function() {
-    addTargetModal.style.display = "none";
+targetModalClose.onclick = function() {
+    targetModal.style.display = "none";
 }
 
 // Close the modal if user clicks outside of it
 window.onclick = function(event) {
-    if (event.target == addTargetModal) {
-        addTargetModal.style.display = "none";
+    if (event.target == targetModal) {
+        targetModal.style.display = "none";
     }
 }
 
@@ -31,12 +32,18 @@ document.getElementById('addTargetForm').addEventListener('submit', function(e) 
         scrapeTimeout: document.getElementById('scrapeTimeout').value,
         staticConfigs: [{
             targets: document.getElementById('targets').value.split(',')
-        }],
-        basicAuth: {
-            username: document.getElementById('username').value,
-            password: document.getElementById('password').value
-        }
+        }]
     };
+
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+
+    if (username && password) {
+        formData.basicAuth = {
+            username: username,
+            password: password
+        };
+    }
 
     fetch('/newtarget', {
         method: 'POST',
@@ -48,7 +55,7 @@ document.getElementById('addTargetForm').addEventListener('submit', function(e) 
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
-        addTargetModal.style.display = "none";
+        targetModal.style.display = "none";
         fetchData();
     })
 });
