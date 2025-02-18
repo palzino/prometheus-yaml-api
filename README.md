@@ -1,3 +1,3 @@
 # prometheus-yaml-api
  
-A work in progress api and web app to manage promethus scrape targets from a browser and hot reload them without needing to restart prometheus.
+A sidecard container used to add and remove targets from prometheus.yml config and hot reload targets from a web ui.
